@@ -1,0 +1,4 @@
+class UserMedicine < ApplicationRecord
+	belongs_to :user
+	belongs_to :medicine
+end
