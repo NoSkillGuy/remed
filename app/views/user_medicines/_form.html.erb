@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= form.label :medicine_id %>
-    <%= form.text_field :medicine_id %>
+    <%= form.select :medicine_id, Medicine.all.pluck(:name, :id).to_a %>
   </div>
 
   <div class="actions">
