@@ -1,0 +1,30 @@
+<%= form_with(model: user_medicine_timer, local: true) do |form| %>
+  <% if user_medicine_timer.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(user_medicine_timer.errors.count, "error") %> prohibited this user medicine timer from being saved:
+      <h2>
+
+      <ul>
+        <% user_medicine_timer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_medicine_id %>
+    <% user_medicine_id_value = user_medicine_id.present? ? user_medicine_id : nil %>
+    <%= form.text_field :user_medicine_id, value: user_medicine_id_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medicine_time %>
+    <%= form.date_field :medicine_time%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

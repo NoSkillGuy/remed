@@ -1,0 +1,28 @@
+<%= form_with(model: user_medicine, local: true) do |form| %>
+  <% if user_medicine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_medicine.errors.count, "error") %> prohibited this user medicine from being saved:</h2>
+
+      <ul>
+      <% user_medicine.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <% user_id_value = user.present? ? user.id : nil %>
+    <%= form.text_field :user_id, value: user_id_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medicine_id %>
+    <%= form.text_field :medicine_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

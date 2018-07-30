@@ -10,5 +10,24 @@
   <%= @user.aadhar %>
 </p>
 
+<table>
+  <tr>
+    <td>My Medicines</td>
+    <td>When to take?</td>
+  </tr>
+  <% @user.medicines.each do |med| %>
+    <tr>
+      <td><%=med.name %></td>
+      <% um = UserMedicine.where(user_id: @user.id, medicine_id: med.id).first %>
+      <% umt = um.user_medicine_timers %>
+      <td>
+        <%= umt.pluck(:medicine_time).join(',') if umt.present? %>
+        <%= link_to 'Add Timer', new_user_medicine_timer_path(user_medicine_id: um.id) %>    
+      </td>
+    </tr>
+  <% end %>   
+</table>
+
+<%= link_to 'Add Medicines', new_user_medicine_path(user_id: @user.id) %><br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
